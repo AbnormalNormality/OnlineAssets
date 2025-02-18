@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Assets</title>
+    <style>
+        .link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="file-links"></div>
+
+    <script>
+        const files = ['roundedCentered.css'];
+        const curUrl = window.location.href;
+        const baseUrl = curUrl.substring(0, curUrl.lastIndexOf('/') + 1);
+
+        function handleLinkClick(event, filename) {
+            const fileUrl = baseUrl + filename;
+            if (event.ctrlKey) {
+                window.open(fileUrl, '_blank');
+            } else {
+                navigator.clipboard.writeText(fileUrl);
+            }
+        }
+
+        function createFileLinks() {
+            const fileLinksContainer = document.getElementById('file-links');
+            files.forEach(file => {
+                const linkDiv = document.createElement('div');
+                linkDiv.className = 'link';
+                linkDiv.textContent = file;
+                linkDiv.onclick = (event) => handleLinkClick(event, file);
+                fileLinksContainer.appendChild(linkDiv);
+            });
+        }
+
+        createFileLinks();
+    </script>
+</body>
+</html>
