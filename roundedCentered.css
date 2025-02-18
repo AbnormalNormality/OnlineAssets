@@ -1,0 +1,90 @@
+:root {
+    --text-color: rgba(0, 0, 0, 1);
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --border: 1px solid rgba(0, 0, 0, 0.2);
+
+    --background-color: rgba(238, 238, 238, 1);
+
+    --container-background: rgba(255, 255, 255, 0.8);
+
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --text-color: rgba(255, 255, 255, 1);
+        --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        --border: 1px solid rgba(255, 255, 255, 0.2);
+
+        --background-color: rgba(51, 51, 51, 1);
+    
+        --container-background: rgba(85, 85, 85, 1);
+    }
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    background-color: var(--container-background);
+
+    width: 90%;
+    margin: 5% auto;
+    padding: 20px;
+
+    box-sizing: border-box;
+    box-shadow: var(--shadow);
+
+    border: var(--border);
+    border-radius: 10px;
+}
+
+.container *:not(li):not(.contents):not(.img-grid img) {
+    margin-bottom: 1em;
+}
+
+.container ul {
+    margin-top: 0;
+}
+
+img {
+    border-radius: 15px;
+    max-width: 100%;
+
+    box-shadow: var(--shadow);
+    border: var(--border);
+}
+
+.container p, .container ul {
+    margin-left: 20px;
+}
+
+.img-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 15px;
+
+    border: var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.img-grid * {
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    margin: 0;
+}
+
+.img-grid *:hover {
+    z-index: 2;
+    transform: scale(1.5);
+    position: relative;
+    filter: brightness(1);
+}
+
+.img-grid:has(*:hover) *:not(:hover) {
+    filter: brightness(0.5);
+}
