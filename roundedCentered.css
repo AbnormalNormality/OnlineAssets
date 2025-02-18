@@ -88,3 +88,7 @@ img {
 .img-grid:has(*:hover) *:not(:hover) {
     filter: brightness(0.5);
 }
+
+h1 {
+    text-align: center;
+}
